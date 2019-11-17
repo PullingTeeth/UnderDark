@@ -1,0 +1,140 @@
+import random, time, sys, pygame
+
+pygame.init()
+
+def separador():
+    print('-' * 50)
+
+
+def hunt():
+    exp_loot = random.randint(1, 100)
+    return exp_loot
+
+
+def stats():
+    separador()
+    print('Level: {}'.format(level))
+    print('EXP: {}/{}'.format(exp, n_level))
+    separador()
+    print('[ENTER] para voltar')
+    input()
+    separador()
+
+def inventario():
+    separador()
+    print('Inventario Vazio')
+    separador()
+    print('[ENTER] para voltar')
+    input()
+
+def navio():
+    separador()
+    print('Opção indisponivel no momento')
+    separador()
+    print('[ENTER] para voltar')
+    input()
+
+def mercado():
+    separador()
+    print('Opção indisponivel no momento')
+    separador()
+    print('[ENTER] para voltar')
+    input()
+
+level = 1
+n_level = 50
+exp = 0
+cidades = ['DAVENPORT', 'SICARIA']
+
+# Main Menu#
+while True:
+    pygame.mixer_music.load('open_song.mp3')
+    pygame.mixer_music.play()
+    print('''## RPG SEM NOME ##
+[0] PLAY
+[1] SOBRE
+[2] SAIR''')
+
+    main_player = int(input(''))
+
+    if main_player == 1:
+        print('''## Versão 0.01a ##''')
+        print('Aperte ENTER para voltar.')
+        input('')
+
+    elif main_player == 2:
+        sys.exit()
+    else:
+        pygame.mixer_music.stop()
+        pygame.mixer_music.load('sound1.mp3')
+        pygame.mixer_music.play()
+        time.sleep(1)
+        separador()
+        print('''
+\033[1mVocê acordou no meio de uma floresta, 
+com muita dor não consegue se lembrar de muita coisa,
+suas roupas estão rasgadas e você tem ferimentos pelo corpo.
+Você houve vozes e sons de sino, há uma cidade por perto, mas antes
+de ir até la, como você gostaria de ser chamado?
+        ''')
+        nome = str(input('> '))
+        pygame.mixer_music.load('sound1.mp3')
+        pygame.mixer_music.play()
+        separador()
+        time.sleep(1)
+        break
+print(' Você se levanta e caminha até a cidade...')
+time.sleep(1)
+separador()
+time.sleep(1)
+while True:
+    print('Você está em {}, o que deseja fazer?'.format(cidades[0]))
+    print('''
+[0] Status
+[1] Inventário
+[2] Mercado
+[3] Návio
+[4] Caçar
+    ''')
+    separador()
+    while exp >= n_level:
+        level += 1
+        n_level = round(n_level * 2)
+
+    player = int(input(''))
+
+    if player == 0:
+        pygame.mixer_music.load('sound1.mp3')
+        pygame.mixer_music.play()
+        stats()
+
+    elif player == 1:
+        pygame.mixer_music.load('sound1.mp3')
+        pygame.mixer_music.play()
+        inventario()
+
+    elif player == 2:
+        pygame.mixer_music.load('sound1.mp3')
+        pygame.mixer_music.play()
+        mercado()
+
+    elif player == 3:
+        pygame.mixer_music.load('sound1.mp3')
+        pygame.mixer_music.play()
+        navio()
+
+    elif player == 4:  # CAÇAR #
+        pygame.mixer_music.load('sound1.mp3')
+        pygame.mixer_music.play()
+        print('Voce está caçando..')
+
+        exp_hunt = hunt()
+        exp += exp_hunt
+        time.sleep(1)
+        print('Você ganhou {}xp'.format(exp_hunt))
+        print('[ENTER] Voltar')
+        input()
+    else:
+        print('Comando Invalido')
+
+
